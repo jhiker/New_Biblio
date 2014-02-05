@@ -1,0 +1,29 @@
+<html>
+    <h3>BOOK: </h3>
+    <table> <tr>
+        <td>
+            <div><b> Author: </b> <i style="font-size: 100%; color: green">{{bookinfo.authorfirst_B}} {{bookinfo.author_B}}</i>
+                <div><b> Title, Edition: </b><i style="font-size: 100%; color: green">{{bookinfo.title_B}}, {{bookinfo.edition_B}}</i>
+                    <div><b>Publisher: </b><a href="{{bookinfo.publisherurl}}"><i style="font-size: 100%; color: green">{{bookinfo.publisher_B}} </i></a>
+                        <div><b>Year, Place Published </b> <i style="font-size: 100%; color: green">{{bookinfo.publishedyear_B}}, {{bookinfo.publishedwhere_B}}</i>
+                            <div><b>Series: </b><i style="font-size: 100%; color: green">{{bookinfo.series_B}}</i> {% if bookinfo.series_B == '' %} <i>None entered</i></div>{% endif %}
+                            <div><b>Subject: </b><i style="font-size: 100%; color: green">{{bookinfo.subject_B}}</i>{% if bookinfo.subject_B == '' %} <i>None entered</i></div>{% endif %}
+                            <div><b>Description: </b><i style="font-size: 100%; color: green">{{bookinfo.description_B}}</i>{% if bookinfo.description_B == '' %} <i>None entered</i></div>{% endif %}
+                            </td>
+        <td>
+            <div><img src="img?img_id={{coverkey}}"></img>
+                </td>
+    </tr> </table>
+    <br>
+    <table width="100%" border="5" background-color: rgb(209, 209, 201); padding: 5px; margin-top: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px;>
+        <tr>
+            <th>Institution</th>
+            <th>Time</th>
+            <th>Notes</th>
+            <th>Image</th>
+            <div>{% for provenance in provs %}
+                <tr> <td> {{provenance.provenances}} </td> <td>{{provenance.provmonth}} {% if provenance.provmonth == '' %} <i> MONTH UNKNOWN </i>{% endif %}, {{provenance.provyear}} {% if provenance.provyear == '' %} <i> YEAR UNKNOWN </i>{% endif %}</td> <td> {{provenance.provnotes}}{% if provenance.provnotes == '' %} |<i> --NO NOTES--</i>{% endif %}</td><td> <div><a href="{{provenance.imgurl}}"><img src="{{provenance.imgurl}}" width="50" height="50">Click for full image</img></tr>
+                </table>
+    </body>
+</html>
+

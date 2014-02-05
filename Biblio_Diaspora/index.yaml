@@ -1,0 +1,27 @@
+indexes:
+
+- kind: Provenencia
+  ancestor: yes
+  properties:
+  - name: date
+  - name: name_I
+    direction: desc
+
+- kind: Libro
+  ancestor: yes
+  properties:
+  - name: date
+  - name: title_B
+    direction: desc
+
+- kind: tempimg
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc
+
+- kind: Stamps
+  ancestor: yes
+  properties:
+  - name: timefloat
+    direction: desc

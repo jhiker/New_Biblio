@@ -1,0 +1,42 @@
+<html>
+{% for provenance in provenanceEntered %}
+    {% if provenance.0 %}
+    <form action='/provenanceDel' method="post">
+        {% else %}
+        <form action='/provenance' method="post">
+            {% endif %}
+            {{provenance}}
+            <select name= 'provenances' >
+                {% for item in templist %}
+                {% if item==provenance.1 %}
+                <option value='{{item}}' selected="true">{{item}}</option>
+                {% else %}
+                <option value='{{item}}'>{{item}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            Year of stamp (e.g. '1950'): <input type="text" name="provyear" value="{{provenance.2}}">
+                Month of stamp: <select name= 'provmonth'>
+                    {% for month in months %}
+                    {% if month==provenance.3 %}
+                    <option value='{{month}}' selected="true">{{month}}</option>
+                    {% else %}
+                    <option value='{{month}}'>{{month}}</option>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+</select>
+<input type="hidden" name="Indexvalue" value="{{provenance.5}}">
+    Special notes(if any): <input type="text" name="provnotes">
+        {% if provenance.0 %}
+        <input type="submit" style="font-size: 100%; background-color: red; color: white; padding: 3px; text-align: right; border-radius: 5px 5px 5px 5px;"value="Delete Stamp"></div>
+            {% else %}
+            <input type="submit" style="font-size: 100%; background-color: light blue; color: black; padding: 3px; text-align: right; border-radius: 5px 5px 5px 5px;"value="Enter Stamp"></div>
+                </div>
+                {% endif %}
+                </form>
+                {% endfor %} </div>
+                
+                </div>
+                {% endif %}
+</html>

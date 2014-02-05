@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <h3>{{item.name_I}} </h3>
+        <h5><i style="font-size: 100%; color: green"> {% for type in types%} {{type}} | {% endfor %} <i>
+        <table> <tr>
+            <td>
+                <div><b> Location: </b> <b style="font-size: 100%; color: green">{{item.location_I}}</b></div>
+                 <div><b> Owner: </b> <b style="font-size: 100%; color: blue">{{item.location_I}}</b>  </div>
+                <div><b> Years Active: </b> <b style="font-size: 100%; color: blue">{{item.yearsActive_I}}</b>  </div>
+                <div><b> Fate: </b> <b style="font-size: 100%; color: blue">{{fate}}</b>  </div>
+                <div><b> Description: </b> <b style="font-size: 100%; color: green">{{item.description_I}}</b>  </div>
+            <td>
+                <div><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{item.latitude}},+{{item.longitude}}">View Larger Map</a></small>
+                    </td>
+        </tr> </table>
+        <table width="100%" border="5" background-color: rgb(209, 209, 201); padding: 5px; margin-top: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px;>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Edition</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <div>{% for book in booklist %}
+                    <tr> <td> <i style="font-size: 100%; color: green"><a href="/bibilio?id={{book.id}}">{{book.title}} </a><i></td> <td style="color:green">{{book.author}} <td> {{book.edition}}</td><td> {{book.subject}} </td> <td> {{book.dte}}</td><</tr>
+                    {% endfor %}</table>
+        </body>
+    
+</html>

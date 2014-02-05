@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    </head>
+    <body>
+        <h1> Add Book </h1>
+            {% if loggedin %}
+        
+        <div align="left"> <form action="/enterbookdata" method="post" enctype="multipart/form-data">
+            <div>Author Last Name <input type="text" name="author_B"></div>
+            <div>Author First Name <input type="text" name="authorfirst_B"></div>
+            <div>Title: <input type="text" name="title_B"></div>
+            <div>Series: <input type="text" name="series_B"></div>
+            <div>Subject: <input type="text" name="genre_B"></div>
+            <div>Language: <input type="text" name="language_B"></div>
+            <div>Publisher location: <input type="text" name="publishedwhere_B"></div>
+            <div>Year published: <input type=" text" name="publishedyear_B"></div>
+            <div>Edition<select name="edition_B">
+                {% for edition in editionlist %}
+                <option value="{{edition}}" > {{edition}} </option>
+                {% endfor %}</select>
+                </div>
+            <div>Publisher<select name="publisher_B">
+                {% for pubname, pubkey in publist.items() %}
+                <option value="{{pubname}}|{{pubkey}}"> {{pubname}} </option>
+                {% endfor %}</select></div>
+            <div>Description: <textarea name="description_B" rows="4" cols="60"></textarea></div>
+            <div>Upload Cover Image<input type="file" name="img"/></div>
+            <div><input type="submit" style="font-size: 100%; background-color: blue; color: white; padding: 5px; text-align: right; border-radius: 5px 5px 5px 5px;"value="Add Book"></div>
+        </form></form> </div>
+        
+        
+                   {% endif %}
+            <a href="{{ url }}">{{ url_linktext }}</a>
+            
+    </body>
+</html>

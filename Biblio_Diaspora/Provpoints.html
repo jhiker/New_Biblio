@@ -1,0 +1,54 @@
+<html>
+<body>
+    <h3>BOOK: </h3>
+    <div><b> Author: </b> <i style="font-size: 100%; color: green">{{bookinfo.authorfirst_B}} {{bookinfo.author_B}}</i>
+        <div><b> Title, Edition: </b><i style="font-size: 100%; color: green">{{bookinfo.title_B}}, {{bookinfo.edition_B}}</i>
+    <div><b>Publisher: </b><i style="font-size: 100%; color: green">{{bookinfo.publisher_B}}</i>
+    <div><b>Year, Place Published </b> <i style="font-size: 100%; color: green">{{bookinfo.publishedyear_B}}, {{bookinfo.publishedwhere_B}}</i>
+        <div><b>Series: </b><i style="font-size: 100%; color: green">{{bookinfo.series_B}}</i> {% if bookinfo.series_B == '' %} <i>None entered</i></div>{% endif %}
+    <div><b>Subject: </b><i style="font-size: 100%; color: green">{{bookinfo.genre_B}}</i>{% if bookinfo.genre_B == '' %} <i>None entered</i></div>{% endif %}
+        <div><b>Description: </b><i style="font-size: 100%; color: green">{{bookinfo.description_B}}</i>{% if bookinfo.description_B == '' %} <i>None entered</i></div>{% endif %}
+    <br>
+        {% if tablebool %}
+        <div><table width="100%" border="5" background-color: rgb(209, 209, 201); padding: 5px; margin-top: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px;>
+            <tr>
+                <th>Institution</th>
+                <th>Date</th>
+                <th>Notes</th>
+                <th>Image Status</th>
+                <th>Delete?</th>
+                {% for provenance in provenanceEntered %}
+                <tr> <td> {{provenance.provenances}} </td> <td>{{provenance.provmonth}} {% if provenance.provmonth == '' %} <i> MONTH UNKNOWN </i>{% endif %}, {{provenance.provyear}} {% if provenance.provyear == '' %} <i> YEAR UNKNOWN </i>{% endif %}</td> <td> {{provenance.provnotes}}{% if provenance.provnotes == '' %} |<i> --NO NOTES--</i>{% endif %}</td> <td> {% if provenance.imgbool %} <b> Uploaded </b> {% else %}<i> No Image </i> {% endif %}</td>
+                        <td>
+                        <form action="/provenanceDel" method="post">
+                            <input type="hidden" name="Indexvalue" value="{{provenance.provindex}}"> {{provenance.provindex}}
+                            <input type="submit" style="font-size: 100%; background-color: red; color: white; padding: 3px; text-align: right; border-radius: 5px 5px 5px 5px;" value="Delete"></form></td></tr> {% endfor %}  </table> </div>
+        {% endif %}
+    <h3>Enter new stamp</h3>
+    <form action='/provenance' method="post" enctype="multipart/form-data">
+        <div>Institution:<select name= 'provenances' >
+                <option value='' selected='true'></option>
+                {% for provname, provkey in templist.items() %}
+                <option value='{{provname}}|{{provkey}}'>{{provname}}</option>
+                {% endfor %}
+    </select></div>
+    <div>Year of stamp (e.g. '1950'):
+    <input type="text" name="provyear"></div>
+    <div>Month of stamp: <select name= 'provmonth'>
+                    {% for month in months %}
+                    <option value='{{month}}'>{{month}}</option>       
+                    {% endfor %}
+                    </select></div>
+        
+    <div>Special notes(if any): <input type="text" name="provnotes"></div>
+    <div>Upload Image<input type="file" name="img"/></div>
+
+            <input type="submit" style="font-size: 100%; background-color: light blue; color: black; padding: 3px; text-align: right; border-radius: 5px 5px 5px 5px;"value="Enter Stamp">
+                </form>
+                <form method="post" action="/provpoints">
+                <input type="submit" style="font-size: 100%; background-color: grey; color: black; padding: 3px; text-align: right; border-radius: 5px 5px 5px 5px;"value="Submit for final review" > </form>
+        If an institution is missing, <a href="/Provenance.html"> go here </a> to enter it.
+
+</body>
+    
+</html>
